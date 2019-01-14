@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Data</title>
+</head>
+<body>
+<h1>All Info From Dictionaries</h1>
+<h2>Repo</h2>
+<table>
+    {% for key, value in repo.items() %}
+    <tr>
+        <th>{{ key }}</th>
+        <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<br>
+<h2>User</h2>
+<table>
+    {% for key, value in user.items() %}
+    <tr>
+        <th>{{ key }}</th>
+        <td>{{ value }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+</body>
+</html>

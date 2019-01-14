@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Repo</title>
+</head>
+<body>
+<form action="/api" method="post" id="form_repo">
+  <label>Input user:
+    <input name="user" type="text" value="{{ repo.get('user') }}"/>
+  </label><br>
+  <label>Input deep link
+    <input name="deep_link" type="text" value="{{ repo.get('deep_link') }}"/>
+  </label><br>
+  <label>Input relative dir
+    <input name="relative_dir" type="text" value="{{ repo.get('relative_dir') }}"/>
+  </label><br>
+  <button type="submit" form="form_repo" name="action" value="repo_update">Submit</button>
+</form>
+</body>
+</html>
