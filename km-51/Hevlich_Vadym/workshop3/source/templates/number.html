@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product</title>
+</head>
+<body>
+Max number: {{ number }}
+<form action="/api" method="post" id="form_number">
+  <label>Number
+    <input name="number" type="number" value="{{ number }}"/>
+  </label><br>
+  <button type="submit" form="form_number" name="action" value="number_update">Submit</button>
+  <br>
+  <br>
+
+  <button type="submit" form="form_number" name="action" value="clear_session">Clear session</button>
+  <button type="submit" form="form_number" name="action" value="clear_cookie">Clear cookie</button>
+</form>
+
+</body>
+</html>
