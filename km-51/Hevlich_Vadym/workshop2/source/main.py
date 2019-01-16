@@ -8,15 +8,14 @@ def index():
     return '<h1>Hello from Flask<h1>'
 
 
-repo_dictionary = {
-    "user": "test_user",
-    "deep_link": "https://github.com/igortereshchenko/dbisworkshops",
-    "relative_dir": "some/path/",
+product_dictionary = {
+    "price": 123,
+    "name": "product name"
 }
 
-user_dictionary = {
-    "username": "test_users",
-    "password": "password"
+shop_dictionary = {
+    "street": "street 12",
+    "name": "Shop123"
 }
 
 available_dictionary = dict.fromkeys(['repo_dictionary', 'user_dictionary'], "dict_name")
@@ -24,28 +23,27 @@ available_dictionary = dict.fromkeys(['repo_dictionary', 'user_dictionary'], "di
 
 @app.route('/api/<action>', methods=['GET'])
 def apiGet(action):
-    if action == "repo":
-        return render_template("repo.html", repo=repo_dictionary)
-    elif action == "user":
-        return render_template("user.html", user=user_dictionary)
+    if action == "product":
+        return render_template("product.html", product=product_dictionary)
+    elif action == "shop":
+        return render_template("shop.html", shop=shop_dictionary)
     elif action == "all":
-        return render_template("all.html", repo=repo_dictionary, user=user_dictionary)
+        return render_template("all.html", product=product_dictionary, shop=shop_dictionary)
     else:
         return render_template("404.html", action_value=action, available=available_dictionary)
 
 
 @app.route('/api', methods=['POST'])
 def apiPost():
-    if request.form["action"] == "repo_update":
-        repo_dictionary["user"] = request.form["user"]
-        repo_dictionary["deep_link"] = request.form["deep_link"]
-        repo_dictionary["relative_dir"] = request.form["relative_dir"]
+    if request.form["action"] == "product_update":
+        product_dictionary["price"] = request.form["price"]
+        product_dictionary["name"] = request.form["name"]
 
         return redirect(url_for('apiGet', action="all"))
 
-    elif request.form["action"] == "user_update":
-        user_dictionary["username"] = request.form["username"]
-        user_dictionary["password"] = request.form["password"]
+    elif request.form["action"] == "shop_update":
+        shop_dictionary["street"] = request.form["street"]
+        shop_dictionary["name"] = request.form["name"]
 
         return redirect(url_for('apiGet', action="all"))
 

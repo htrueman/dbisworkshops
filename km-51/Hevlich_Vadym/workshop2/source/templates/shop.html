@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop</title>
+</head>
+<body>
+<form action="/api" method="post" id="form_shop">
+  <label>Street:
+    <input name="street" type="text" value="{{ shop.get('street') }}"/>
+  </label><br>
+  <label>Name
+    <input name="name" type="text" value="{{ shop.get('name') }}"/>
+  </label><br>
+  <button type="submit" form="form_shop" name="action" value="shop_update">Submit</button>
+</form>
+</body>
+</html>
