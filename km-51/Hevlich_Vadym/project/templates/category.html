@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{% url 'core:main' %}">Repos</a>
+        <a class="navbar-brand" href="{% url 'core:categories' %}">Categories</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'core:logout' %}?next={% url 'core:login' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <div class="container text-center">
+      {% for category in object_list %}
+        <div style="margin: 15px">
+          <a href="{% url 'core:category' pk=category.pk %}"><h3>{{ category.name }}</h3></a>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div style="margin: 20px; margin-left: 30%">
+      <h2>Add tests to category</h2>
+    <form method="post">
+    {% csrf_token %}
+      <select multiple name="{{ form.results.html_name }}">
+        {% for result in results %}
+          <option value="{{ result.pk }}" {% if result in category.results.all %}selected{% endif %}>{{ result.repo.deep_link }}</option>
+        {% endfor %}
+      </select>
+    <br>
+      <button type="submit" class="btn btn-success">Add</button>
+    </form>
+    </div>
+  </div>
+
+  <div style="margin: 40px">
+    {% for res in results %}
+      {% if res in category.results.all %}
+        <a href="{{ res.result_file.path }}" download>{{ res.repo.deep_link }}</a> <br>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+{% endblock %}
